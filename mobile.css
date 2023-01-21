@@ -1,0 +1,65 @@
+.digital{
+  height: 170px;
+  width: 370px;
+}
+
+.blur{
+  padding: 0px 20px;
+}
+
+.blur::before{
+  height: 117px;
+  width: 328px;
+  border-radius: 10px;
+  margin: 13px 0px;
+}
+
+.clock{
+  height: 90px;
+}
+
+#box1{
+  margin: 3px;
+  margin-top: 10px;
+  padding: 2px;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+#box2{
+  margin: 3px;
+  margin-top: 10px;
+  padding: 2px;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+#box3{
+  margin: 3px;
+  margin-top: 10px;
+  padding: 2px;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+.red{
+  margin: 3px;
+  margin-top: 10px;
+  padding: 2px;
+  font-size: 30px;
+}
+
+.cal1{
+  border-radius: 5px;
+  font-size: 10px;
+  margin-right: 90px;
+  margin-top: -14px;
+  padding: 4px;
+}
+
+.cal2{
+  border-radius: 5px;
+  font-size: 10px;
+  margin-left: 90px;
+  margin-top: -14px;
+  padding: 4px;
+}
