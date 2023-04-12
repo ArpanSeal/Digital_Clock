@@ -41,8 +41,8 @@
 // //   n = setInterval(fun, 1000);
 // // })
 
-const openCageApiKey = "942bc8c6e7174ce38f462e049f1cb1b3";
-const openWeatherMapApiKey = "0c5eeaf4cd18e1d9dcff92482b3c38ac";
+const openCageApiKey = "ENTER_YOUR_API_KEY";
+const openWeatherMapApiKey = "ENTER_YOUR_API_KEY";
 let latitude = 22.5697;
 let longitude = 88.3697;
 
