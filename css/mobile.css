@@ -51,7 +51,6 @@
 .cal1{
   border-radius: 5px;
   font-size: 10px;
-  margin-right: 90px;
   margin-top: -14px;
   padding: 4px;
 }
@@ -59,7 +58,20 @@
 .cal2{
   border-radius: 5px;
   font-size: 10px;
-  margin-left: 90px;
   margin-top: -14px;
+  padding: 4px;
+}
+
+#temp{
+  font-size: 8px;
+  margin-top: -14px;
+  letter-spacing: 2px;
+  padding: 4px;
+}
+
+#desc{
+  font-size: 1rem;
+  margin-top: -14px;
+  letter-spacing: 2px;
   padding: 4px;
 }
