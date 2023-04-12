@@ -47,6 +47,8 @@ let latitude = 22.5697;
 let longitude = 88.3697;
 
 if ("geolocation" in navigator) {
+  let a = new Date();
+  let hr = a.getHours();
   navigator.geolocation.getCurrentPosition(
     function (position) {
       latitude = position.coords.latitude;
@@ -69,9 +71,13 @@ if ("geolocation" in navigator) {
               const tempElement = document.getElementById("temp");
               const descElement = document.getElementById("desc");
               tempElement.innerHTML = `${temperature}&deg;C`;
-              if (description == "clear sky")
-                descElement.innerHTML = `<i class="fa-solid fa-sun"></i>`;
-              else if (
+              if (description == "clear sky") {
+                if ((hr >= 18 && hr <= 23) || (hr >= 0 && hr <= 4)) {
+                  descElement.innerHTML = `<i class="fa-solid fa-sun"></i>`;
+                } else {
+                  descElement.innerHTML = `<i class="fa-solid fa-moon"></i>`;
+                }
+              } else if (
                 description.includes("drizzle") ||
                 description.includes("rain")
               )
@@ -80,7 +86,35 @@ if ("geolocation" in navigator) {
             })
             .catch((error) => console.error(error));
         })
-        .catch((error) => console.error(error));
+        .catch((error) => {
+          console.error("Error getting user location:", error);
+
+          const city = "Kolkata";
+          fetch(
+            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${openWeatherMapApiKey}&units=metric`
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              const temperature = data.main.temp;
+              const description = data.weather[0].description;
+              const tempElement = document.getElementById("temp");
+              const descElement = document.getElementById("desc");
+              tempElement.innerHTML = `${temperature}&deg;C`;
+              if (description == "clear sky") {
+                if ((hr >= 18 && hr <= 23) || (hr >= 0 && hr <= 4)) {
+                  descElement.innerHTML = `<i class="fa-solid fa-sun"></i>`;
+                } else {
+                  descElement.innerHTML = `<i class="fa-solid fa-moon"></i>`;
+                }
+              } else if (
+                description.includes("drizzle") ||
+                description.includes("rain")
+              )
+                descElement.innerHTML = `<i class="fa-sharp fa-solid fa-cloud-rain"></i>`;
+              else descElement.innerHTML = `<i class="fa-solid fa-cloud"></i>`;
+            })
+            .catch((error) => console.error(error));
+        });
     },
     function (error) {
       console.error("Error getting user location:", error);
@@ -96,9 +130,13 @@ if ("geolocation" in navigator) {
           const tempElement = document.getElementById("temp");
           const descElement = document.getElementById("desc");
           tempElement.innerHTML = `${temperature}&deg;C`;
-          if (description == "clear sky")
-            descElement.innerHTML = `<i class="fa-solid fa-sun"></i>`;
-          else if (
+          if (description == "clear sky") {
+            if ((hr >= 18 && hr <= 23) || (hr >= 0 && hr <= 4)) {
+              descElement.innerHTML = `<i class="fa-solid fa-sun"></i>`;
+            } else {
+              descElement.innerHTML = `<i class="fa-solid fa-moon"></i>`;
+            }
+          } else if (
             description.includes("drizzle") ||
             description.includes("rain")
           )
@@ -160,10 +198,6 @@ let fun = () => {
     a.getYear() + 1900
   }`;
 
-  // var latitude = position.coords.latitude;
-  // var longitude = position.coords.longitude;
-  console.log(latitude, longitude);
-
   fetch(
     `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${openCageApiKey}&language=en&pretty=1`
   )
@@ -181,9 +215,13 @@ let fun = () => {
           const tempElement = document.getElementById("temp");
           const descElement = document.getElementById("desc");
           tempElement.innerHTML = `${temperature}&deg;C`;
-          if (description == "clear sky")
-            descElement.innerHTML = `<i class="fa-solid fa-sun"></i>`;
-          else if (
+          if (description == "clear sky") {
+            if ((hr >= 18 && hr <= 23) || (hr >= 0 && hr <= 4)) {
+              descElement.innerHTML = `<i class="fa-solid fa-sun"></i>`;
+            } else {
+              descElement.innerHTML = `<i class="fa-solid fa-moon"></i>`;
+            }
+          } else if (
             description.includes("drizzle") ||
             description.includes("rain")
           )
@@ -192,7 +230,35 @@ let fun = () => {
         })
         .catch((error) => console.error(error));
     })
-    .catch((error) => console.error(error));
+    .catch((error) => {
+      console.error("Error getting user location:", error);
+      const city = "Kolkata";
+
+      fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${openWeatherMapApiKey}&units=metric`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          const temperature = data.main.temp;
+          const description = data.weather[0].description;
+          const tempElement = document.getElementById("temp");
+          const descElement = document.getElementById("desc");
+          tempElement.innerHTML = `${temperature}&deg;C`;
+          if (description == "clear sky") {
+            if ((hr >= 18 && hr <= 23) || (hr >= 0 && hr <= 4)) {
+              descElement.innerHTML = `<i class="fa-solid fa-sun"></i>`;
+            } else {
+              descElement.innerHTML = `<i class="fa-solid fa-moon"></i>`;
+            }
+          } else if (
+            description.includes("drizzle") ||
+            description.includes("rain")
+          )
+            descElement.innerHTML = `<i class="fa-sharp fa-solid fa-cloud-rain"></i>`;
+          else descElement.innerHTML = `<i class="fa-solid fa-cloud"></i>`;
+        })
+        .catch((error) => console.error(error));
+    });
 };
 fun();
 setInterval(fun, 1000); // Update the clock every second.
